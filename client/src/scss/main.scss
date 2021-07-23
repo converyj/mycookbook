@@ -1,0 +1,54 @@
+@import './abstracts/index';
+@import './base/index';
+@import './utilities/index';
+
+body {
+	color: $clr-secondary;
+	font-family: Calibri, sans-serif;
+	font-size: 1.25rem;
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'Caveat Brush', cursive;
+	font-size: 4em;
+	font-size: clamp(2rem, calc(5vw + 1rem), 4rem);
+	color: $clr-primary;
+}
+
+::placeholder {
+	font: inherit;
+	color: $clr-secondary;
+}
+
+.btn {
+	border-radius: $br-nm;
+	padding: .75em 1.25em;
+
+	&--primary {
+		background: $clr-primary;
+	}
+
+	&:hover,
+	&:focus {
+		background: $clr-primaryLight;
+		transition: all ease-in-out 250ms;
+	}
+
+	&--pagination {
+		color: $clr-primary;
+		background: $clr-lightGrey;
+
+		&:hover,
+		&:focus {
+			color: $clr-lightGrey;
+			background: $clr-primary;
+		}
+	}
+}
+
+main {
+	display: grid;
+	grid-template-columns: (minmax(0, 20em) minmax(0, 2fr));
+}

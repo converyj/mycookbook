@@ -1,0 +1,29 @@
+@import '../scss/main';
+
+header {
+	background: $clr-primaryLight;
+	padding: 1em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1em;
+	font-weight: bold;
+
+	.logo {
+		color: $clr-primary;
+	}
+
+	.nav {
+		&__list {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1em;
+
+			.nav__button {
+				background: none;
+				text-transform: uppercase;
+			}
+		}
+	}
+}

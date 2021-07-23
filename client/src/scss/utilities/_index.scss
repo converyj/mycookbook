@@ -1,0 +1,32 @@
+$br-nm: 1em;
+$br-round: 50%;
+
+%flex--row {
+	display: flex;
+	justify-content: center;
+}
+
+%flex--column {
+	@extend %flex--row;
+	flex-direction: column;
+}
+
+%grid {
+	display: grid;
+	grid-template-columns: minmax(0, 6em) minmax(0, 2fr);
+}
+
+%grid--preview {
+	@extend %grid;
+	grid-template-areas: 'image title' 'image meta' 'image meta';
+	align-items: center;
+	column-gap: .25em;
+}
+
+%container {
+	@extend %p-1;
+}
+
+%p-1 {
+	padding: 1em;
+}

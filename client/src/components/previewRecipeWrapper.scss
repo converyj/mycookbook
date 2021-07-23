@@ -1,0 +1,11 @@
+@import '../scss/main.scss';
+
+.preview {
+	@extend %flex--column;
+	justify-content: flex-start;
+	gap: 1em;
+	&--container {
+		@extend %container;
+		height: 40em;
+	}
+}

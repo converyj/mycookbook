@@ -1,0 +1,14 @@
+@import '../scss/main.scss';
+
+.pagination-nav-buttons {
+	@extend %flex--row;
+	align-items: flex-end;
+
+	.dot {
+		color: $clr-lightGrey;
+
+		&--active {
+			color: $clr-secondary;
+		}
+	}
+}

@@ -1,0 +1,28 @@
+@import '../scss/main.scss';
+
+.search {
+	flex-grow: 1;
+	max-width: 30em;
+
+	&__form {
+		border-radius: $br-nm;
+		padding: .5em;
+		display: flex;
+		align-items: center;
+		background-color: $clr-lightGrey;
+	}
+	&__input {
+		border: none;
+		background: none;
+		flex-grow: 1;
+
+		::placeholder {
+			color: $clr-secondary;
+		}
+	}
+}
+.btn--search {
+	background: $clr-primaryLight;
+	display: inline-block;
+	height: 100%;
+}
