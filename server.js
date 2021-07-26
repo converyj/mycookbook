@@ -43,13 +43,6 @@ app.get('/search/:query', (req, res) => {
 		.catch((err) => console.log('Error in server.js'));
 });
 
-app.get('/all', (req, res) => {
-	console.log('/all');
-	Recipe.find()
-		.then((results) => {
-			res.json(results);
-		})
-		.catch((err) => console.log('Error in server.js'));
-});
+app.get('/all', recipeController.all_recipes);
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
