@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchWrapper from './SearchWrapper';
+import { SearchWrapper } from '../SearchBar';
 
 import './header.scss';
 

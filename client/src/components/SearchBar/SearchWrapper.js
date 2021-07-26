@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import SearchBar from './SearchBar';
-import { getAllBasedOnQuery } from './../actions/recipes';
+import { getAllBasedOnQuery } from '../../actions/recipes';
 
 /*  Search by title or category
 * Render search bar 

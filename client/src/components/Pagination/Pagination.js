@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ButtonPrimary from './ButtonPrimary';
+import { ButtonPrimary } from '../Buttons';
 import PaginationDots from './PaginationDots';
-import { loadNewPage } from '../actions/recipes';
+import { loadNewPage } from '../../actions/recipes';
 
 import './pagination.scss';
 
