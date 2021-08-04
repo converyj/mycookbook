@@ -3,7 +3,7 @@ $br-round: 50%;
 
 %flex--row {
 	display: flex;
-	justify-content: center;
+	flex-wrap: wrap;
 }
 
 %flex--column {
@@ -23,8 +23,16 @@ $br-round: 50%;
 	column-gap: .25em;
 }
 
+%grid--recipe {
+	@extend %grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 1em;
+	column-gap: 2em;
+}
+
 %container {
-	@extend %p-1;
+	max-width: 90em;
+	margin: auto;
 }
 
 %p-1 {

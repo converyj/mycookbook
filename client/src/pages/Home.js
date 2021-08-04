@@ -3,23 +3,17 @@ import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Header } from '../components/Header';
 
-import { PreviewRecipeWrapper } from '../components/PreviewRecipe';
+import MainContainer from '../components/MainContainer';
+import { Recipe } from './../components/Recipe';
 
 const Home = () => {
-	const recipes = useSelector((state) => state.recipes.filteredRecipes);
-
+	console.log('Home');
 	return (
 		<div>
 			<Header />
-			<main>
-				<PreviewRecipeWrapper recipes={recipes} />
-			</main>
+			<MainContainer />
 		</div>
 	);
-};
-
-Home.propTypes = {
-	recipes: PropTypes.array
 };
 
 export default Home;

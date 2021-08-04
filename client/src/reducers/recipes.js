@@ -1,6 +1,14 @@
 import cloneDeep from 'lodash-es/cloneDeep.js';
 
-import { GET_RECIPE, RECIEVE_ALL, LOAD_NEW_PAGE } from './../actions/recipes';
+import {
+	GET_RECIPES,
+	GET_RECIPE,
+	RECIEVE_ALL,
+	LOAD_NEW_PAGE,
+	TOGGLE_BOOKMARK
+} from './../actions/recipes';
+
+import { whichObj, buildArr, getPropertyName } from '../utilites/helper';
 
 export default function recipes(state = {}, action) {
 	switch (action.type) {
@@ -28,70 +36,131 @@ export default function recipes(state = {}, action) {
 				totalPages
 			};
 
-		case GET_RECIPE:
+		case GET_RECIPES:
 			return {
 				...state,
-				recipes: [
+				filteredRecipes: [
 					...action.recipe
 				]
 			};
 
+		case GET_RECIPE:
+			let directionsCountPerPage = action.countPerPage || 3;
+
+			// clone the state
+			let getRecipeState = cloneDeep(state);
+
+			// get the recipe
+			getRecipeState.recipe = getRecipeState.filteredRecipes.find(
+				(recipe) => recipe._id === action.id
+			);
+
+			let allDirections = getRecipeState.recipe.directions;
+
+			let filteredDirections = getRecipeState.recipe.directions.slice(
+				0,
+				directionsCountPerPage
+			);
+
+			let directionsTotalPages = Math.ceil(allDirections.length / directionsCountPerPage);
+
+			// all directions unfiltered
+			getRecipeState.recipe.allDirections = allDirections;
+
+			// directions per page
+			getRecipeState.recipe.filteredDirections = filteredDirections;
+
+			// current number of directions seen so far
+			getRecipeState.recipe.currentCount = directionsCountPerPage;
+
+			// number of directions per page
+			getRecipeState.recipe.countPerPage = directionsCountPerPage;
+
+			// number of all directions
+			getRecipeState.recipe.totalCount = allDirections.length;
+
+			getRecipeState.recipe.currentPage = 1;
+
+			// number of total pages
+			getRecipeState.recipe.totalPages = directionsTotalPages;
+			console.log(getRecipeState);
+			return getRecipeState;
+
+		case TOGGLE_BOOKMARK:
+			return {
+				...state,
+				recipe: {
+					...state.recipe,
+					bookmarked: !state.recipe.bookmarked
+				}
+			};
 		case LOAD_NEW_PAGE:
 			// clone the state
 			let loadNewPageState = cloneDeep(state);
+
+			// single recipe object if not all recipes
+			const obj =
+				action.payload.from !== 'all' &&
+				loadNewPageState[whichObj(loadNewPageState, action.payload.from)];
+			console.log(obj);
 			// how many pages should be added. Will always be 1 or -1
 			let addPages = action.payload.page;
+			console.log(obj.currentPage);
 			// add it to the current page
-			loadNewPageState.currentPage += addPages;
+			obj.currentPage += addPages;
 
-			let perPage = loadNewPageState.countPerPage; // 10 by default
+			let perPage = obj.countPerPage; // count of item per page
 
-			let nextRecipes;
+			let next;
 
 			// next page
 			if (addPages === 1) {
 				/*
-				1. Increase the current recipes shown 
+				1. Increase the current shown 
 				- moving from page 1 to 2 will cause 'upperCount' to be 20
 				*/
-				let upperCount = loadNewPageState.currentCount + perPage;
+				let upperCount = obj.currentCount + perPage;
 				// get the previous number of recipes shown: will be 10 (page 2)
-				let lowerCount = loadNewPageState.currentCount;
+				let lowerCount = obj.currentCount;
 				/* 2. Update the current number of recipes shown 
 				- change the currentCount to match the 'upperCount'. It'll be used as such at any point after this line
 				*/
-				loadNewPageState.currentCount += loadNewPageState.countPerPage;
+				obj.currentCount += obj.countPerPage;
 
 				// 3. retrieve next recipes eg. within the range of 10-20 (for page 2)
 				// use 'allRecipes' array rather than 'filteredRecipes' because using 'filterdRecipes' would result in an empty array since we only have 10 recipes there when the page first loads
-				nextRecipes = loadNewPageState.allRecipes.slice(lowerCount, upperCount);
+				next = obj[getPropertyName(action.payload.from)].slice(lowerCount, upperCount);
 			}
+			console.log(next);
 			// previous page
 			if (addPages === -1) {
 				/*
 				1. Decrease the number of recipes showm
 				- 'currentCount' has changed roles: now it serves as the upperCount - will be 20 (page 2)
 				*/
-				let upperCount = loadNewPageState.currentCount;
+				let upperCount = obj.currentCount;
 				// get the previous number of recipes shown - will be 10 (page 2)
-				let lowerCount = loadNewPageState.currentCount - perPage; // decrease by 10
+				let lowerCount = obj.currentCount - perPage; // decrease by 10
 
 				/* 2. Update the current number of recipes shown 
 				- change the currentCount to match the 'lowerCount'. It'll be used as such at any point after this line
 				*/
-				loadNewPageState.currentCount = lowerCount;
+				obj.currentCount = lowerCount;
 
 				// 3. retrieve next recipes eg. within the range of 0-10 (starting at page 2)
 				// use 'allRecipes' array rather than 'filteredRecipes' because using 'filteredRecipes' would result in an empty array since we only have 10 recipes there when the page first loads
-				nextRecipes = loadNewPageState.allRecipes.slice(
+				next = obj[getPropertyName(action.payload.from)].slice(
 					lowerCount - perPage,
 					upperCount - perPage
 				);
 			}
 
-			// update filterdRecipes and filteredCount
-			loadNewPageState.filteredRecipes = nextRecipes;
-			loadNewPageState.filteredCount = loadNewPageState.filteredRecipes.length;
+			const propertyName = getPropertyName(action.payload.from, 'filtered');
+
+			console.log(propertyName);
+			// update filterdRecipes
+			obj[propertyName] = next;
+
 			return loadNewPageState;
 		default:
 			return state;

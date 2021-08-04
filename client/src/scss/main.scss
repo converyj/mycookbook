@@ -1,20 +1,37 @@
-@import './abstracts/index';
-@import './base/index';
-@import './utilities/index';
+@import './abstracts';
+@import './base';
+@import './utilities';
 
 body {
 	color: $clr-secondary;
 	font-family: Calibri, sans-serif;
 	font-size: 1.25rem;
+	font-weight: 100;
 }
 
 h1,
 h2,
 h3 {
 	font-family: 'Caveat Brush', cursive;
-	font-size: 4em;
-	font-size: clamp(2rem, calc(5vw + 1rem), 4rem);
+
 	color: $clr-primary;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 4rem;
+	font-size: clamp(2rem, calc(5vw + 1rem), 4rem);
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-size: clamp(1.5rem, calc(5vw + 1rem), 2.5rem);
+}
+
+h3,
+h4 {
+	font-size: 1rem;
+	font-size: clamp(1rem, calc(5vw + 1rem), 1.5rem);
 }
 
 ::placeholder {
@@ -28,6 +45,15 @@ h3 {
 
 	&--primary {
 		background: $clr-primary;
+	}
+
+	&--round {
+		border-radius: $br-round;
+		padding: .55em;
+		display: flex;
+		align-items: center;
+		background-color: $clr-primary;
+		color: $clr-lightGrey;
 	}
 
 	&:hover,
@@ -48,7 +74,12 @@ h3 {
 	}
 }
 
+.container {
+	@extend %container;
+}
+
 main {
 	display: grid;
 	grid-template-columns: (minmax(0, 20em) minmax(0, 2fr));
+	padding: 0 1em;
 }

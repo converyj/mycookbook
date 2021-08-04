@@ -36,15 +36,16 @@ const recipeSchema = new Schema({
 		required: true
 	},
 	directions: {
-		type: [
-			{ direction: String }
-		],
+		type: [],
 		required: true
 	},
 	linkedRecipes: {
 		type: [
 			{ id: Number }
 		]
+	},
+	bookmarked: {
+		type: Boolean
 	}
 });
 

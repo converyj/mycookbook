@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './searchBar.scss';
-
 const SearchInput = ({ handleChange, handleSubmit, query }) => {
 	return (
 		<form onSubmit={handleSubmit} className="search__form">

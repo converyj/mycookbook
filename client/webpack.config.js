@@ -10,8 +10,15 @@ const config = {
 		filename: 'bundle.js'
 	},
 	devServer: {
-		contentBase: __dirname + '/dist',
-		hot: true
+		contentBase: path.join(__dirname, 'dist'),
+		hot: true,
+		historyApiFallback: true,
+		proxy: {
+			path: '/api',
+			target: 'http://localhost:5000',
+			pathRewrite: { '^/api': '' },
+			secure: false
+		}
 	},
 
 	module: {
@@ -56,7 +63,7 @@ const config = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, './public/index.html'),
-			inject: true
+			favicon: './public/favicon.ico'
 		}),
 		new MiniCssExtractPlugin()
 	]

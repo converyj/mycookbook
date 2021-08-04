@@ -1,21 +1,30 @@
-import { getAllRecipes, getAllRecipesBasedOnQuery } from '../utilites/api';
+import { getAllRecipes, getAllRecipesBasedOnQuery, updateRecipeBookmark } from '../utilites/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const RECIEVE_ALL = 'RECIEVE_ALL';
+export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPE = 'GET_RECIPE';
+export const TOGGLE_BOOKMARK = 'TOGGLE_BOOKMARK';
 export const LOAD_NEW_PAGE = 'LOAD_NEW_PAGE';
 
 export const recieveAll = (recipes) => {
 	return {
-		type: 'RECIEVE_ALL',
+		type: RECIEVE_ALL,
 		recipes
 	};
 };
 
-export const getRecipe = (recipe) => {
+export const getRecipes = (recipe) => {
 	return {
-		type: 'GET_RECIPE',
+		type: GET_RECIPES,
 		recipe
+	};
+};
+
+export const getRecipe = (id) => {
+	return {
+		type: GET_RECIPE,
+		id
 	};
 };
 
@@ -25,6 +34,13 @@ export const loadNewPage = (payload) => {
 		payload
 	};
 };
+
+export function toggleBookmark(id) {
+	return {
+		type: TOGGLE_BOOKMARK,
+		id
+	};
+}
 
 export function handleInitialData() {
 	return (dispatch) => {
@@ -40,8 +56,14 @@ export function getAllBasedOnQuery(query) {
 	return (dispatch) => {
 		dispatch(showLoading());
 		return getAllRecipesBasedOnQuery(query).then((recipe) => {
-			dispatch(getRecipe(recipe));
+			dispatch(getRecipes(recipe));
 			dispatch(hideLoading());
 		});
+	};
+}
+
+export function handleToggleBookmark(id) {
+	return (dispatch) => {
+		return updateRecipeBookmark(id).then(() => dispatch(toggleBookmark(id)));
 	};
 }

@@ -1,35 +1,46 @@
-@import '../../scss/main.scss';
+@import '../../scss/utilities';
+@import '../../scss/abstracts';
 
-.preview-item {
-	border-radius: $br-nm;
-	@extend %p-1;
-	@extend %grid--preview;
-	line-height: 1;
-
-	&--active {
-		background-color: $clr-primaryLight;
-	}
-	p {
-		margin: 0;
+.preview {
+	@extend %flex--column;
+	justify-content: flex-start;
+	gap: 1em;
+	&--container {
+		@extend %p-1;
+		height: 40em;
 	}
 
-	&__image {
-		grid-area: image;
-		border-radius: $br-round;
-		border: 1px solid;
-	}
+	&__item {
+		border-radius: $br-nm;
+		@extend %p-1;
+		@extend %grid--preview;
+		line-height: 1;
 
-	&__title {
-		grid-area: title;
-		text-transform: uppercase;
-		color: $clr-primary;
-	}
+		&--active {
+			background-color: $clr-primaryLight;
+		}
+		p {
+			margin: 0;
+		}
 
-	&__category {
-		text-transform: uppercase;
-	}
+		&__image {
+			grid-area: image;
+			border-radius: $br-round;
+			border: 1px solid;
+		}
 
-	&__publisher {
-		font-style: italic;
+		&__title {
+			grid-area: title;
+			text-transform: uppercase;
+			color: $clr-primary;
+		}
+
+		&__category {
+			text-transform: uppercase;
+		}
+
+		&__publisher {
+			font-style: italic;
+		}
 	}
 }

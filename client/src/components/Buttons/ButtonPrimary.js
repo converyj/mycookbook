@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ButtonPrimary = ({ children, handleClick }) => {
+const ButtonPrimary = ({ children, handleClick, styles }) => {
 	return (
-		<button className="btn btn--pagination" onClick={handleClick}>
+		<button className={`btn btn--pagination ${styles}`} onClick={handleClick}>
 			{children}
 		</button>
 	);

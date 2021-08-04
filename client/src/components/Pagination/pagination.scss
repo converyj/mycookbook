@@ -1,14 +1,28 @@
-@import '../../scss/main.scss';
+@import '../../scss/utilities';
+@import '../../scss/abstracts';
 
 .pagination-nav-buttons {
 	@extend %flex--row;
-	align-items: flex-end;
+	align-items: center;
+	justify-content: center;
 
 	.dot {
 		color: $clr-lightGrey;
+
+		+ .dot {
+			padding-left: 1em;
+		}
 
 		&--active {
 			color: $clr-secondary;
 		}
 	}
+}
+
+.btn--right {
+	margin-left: auto;
+}
+
+.btn--left {
+	margin-right: auto;
 }

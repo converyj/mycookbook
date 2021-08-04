@@ -4,6 +4,8 @@ import { withRouter } from 'react-router';
 import SearchBar from './SearchBar';
 import { getAllBasedOnQuery } from '../../actions/recipes';
 
+import './searchBar.scss';
+
 /*  Search by title or category
 * Render search bar 
 */

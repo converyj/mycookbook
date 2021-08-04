@@ -1,16 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import './previewRecipe.scss';
-
 /* Renders the preview box of the recipe */
-const PreviewRecipe = ({ recipe }) => {
+const PreviewRecipe = ({ recipe, handleRecipe }) => {
 	return (
-		<li key={recipe._id} className="preview-item preview-item--active">
-			<figure className="preview-item__image">
+		<li key={recipe._id} className="preview__item preview__item--active" onClick={handleRecipe}>
+			<figure className="preview__item__image">
 				<img src="" alt={recipe.title} />
 			</figure>
-
 			<h4 className="preview-item__title">{recipe.title}</h4>
 			<p className="preview-item__publisher">myrecipes.com</p>
 			<p className="preview-item__category">Pasta</p>

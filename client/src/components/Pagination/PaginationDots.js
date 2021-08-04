@@ -1,14 +1,15 @@
 import React from 'react';
 
 const PaginationDots = ({ totalPages, currentPage }) => {
+	console.log(totalPages);
 	return (
 		<div>
 			{[
 				...Array(totalPages)
 			].map((_, index) => (
-				<li className={`dot ${currentPage === index + 1 && 'dot--active'}`} key={index}>
+				<span className={`dot ${currentPage === index + 1 && 'dot--active'}`} key={index}>
 					&bull;
-				</li>
+				</span>
 			))}
 		</div>
 	);

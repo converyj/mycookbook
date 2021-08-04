@@ -4,6 +4,8 @@ import Router from './Router';
 
 import { handleInitialData } from './actions/recipes';
 
+import './scss/main.scss';
+
 const App = () => {
 	const dispatch = useDispatch();
 
@@ -12,7 +14,7 @@ const App = () => {
 	});
 
 	return (
-		<div className="App">
+		<div className="container">
 			<Router />
 		</div>
 	);
