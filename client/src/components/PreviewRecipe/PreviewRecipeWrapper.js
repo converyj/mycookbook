@@ -16,7 +16,7 @@ const PreviewRecipeWrapper = ({ recipes, history }) => {
 		dispatch(getRecipe(id));
 	};
 	return (
-		<aside className="preview preview--container">
+		<ul className="preview preview--container">
 			{recipes &&
 				recipes.map((recipe) => (
 					<PreviewRecipe
@@ -25,8 +25,7 @@ const PreviewRecipeWrapper = ({ recipes, history }) => {
 						handleRecipe={() => handleRecipe(recipe._id)}
 					/>
 				))}
-			<Pagination from="recipes" />
-		</aside>
+		</ul>
 	);
 };
 

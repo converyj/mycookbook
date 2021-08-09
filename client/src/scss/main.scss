@@ -74,6 +74,27 @@ h4 {
 	}
 }
 
+.bookmarks {
+	position: absolute;
+	padding: 1rem 0;
+	right: -1.2rem;
+	z-index: 10;
+	width: 40rem;
+	box-shadow: 0 0.8rem 5rem 2rem rgba(97, 85, 81, 0.1);
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s 0.2s;
+	background-color: $clr-lightGrey;
+	width: 30rem;
+	font-weight: initial;
+}
+
+.bookmarks:hover,
+.nav__btn--bookmarks:hover + .bookmarks {
+	visibility: visible;
+	opacity: 1;
+}
+
 .container {
 	@extend %container;
 }
@@ -81,5 +102,13 @@ h4 {
 main {
 	display: grid;
 	grid-template-columns: (minmax(0, 20em) minmax(0, 2fr));
-	padding: 0 1em;
+	gap: 1em;
+	position: relative;
+	min-height: 100vh;
+}
+
+.left-col {
+	@extend %flex--column;
+	justify-content: space-between;
+	background: $clr-lightGrey;
 }

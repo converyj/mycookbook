@@ -2,7 +2,7 @@
 
 header {
 	background: $clr-primaryLight;
-	padding: 1em;
+	padding: 0 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -14,15 +14,22 @@ header {
 	}
 
 	.nav {
+		align-self: stretch;
+
 		&__list {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
+
 			gap: 1em;
+			height: 100%;
+
+			.nav__item {
+				position: relative;
+			}
 
 			.nav__button {
 				background: none;
 				text-transform: uppercase;
+				height: 100%;
 			}
 		}
 	}

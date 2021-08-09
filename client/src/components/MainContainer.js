@@ -5,6 +5,8 @@ import { Header } from '../components/Header';
 
 import { PreviewRecipeWrapper } from '../components/PreviewRecipe';
 import { RecipeWrapper } from './Recipe';
+import LeftCol from './LeftCol';
+import BookmarkWrapper from './BookmarkWrapper';
 
 /* Container to hold the main components */
 const MainContainer = () => {
@@ -12,7 +14,7 @@ const MainContainer = () => {
 
 	return (
 		<main>
-			<PreviewRecipeWrapper recipes={recipes} />
+			<LeftCol recipes={recipes} />
 			<RecipeWrapper />
 		</main>
 	);

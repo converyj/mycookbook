@@ -9,10 +9,10 @@ import { Recipe } from './../components/Recipe';
 const Home = () => {
 	console.log('Home');
 	return (
-		<div>
+		<React.Fragment>
 			<Header />
 			<MainContainer />
-		</div>
+		</React.Fragment>
 	);
 };
 
