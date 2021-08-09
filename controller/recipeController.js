@@ -23,11 +23,15 @@ const get_recipe = (req, res) => {
 		.catch((err) => console.log('Error in server.js'));
 };
 
+// update DB to avoid using localStorage to store bookmarks
+// just use localStorage because of the toggling back and forth since recipe is in multiple places in state - would have to update the filteredRecipes as well to persist the data --> updated filteredRecipes and recipe object
 const get_recipe_by_id = async (req, res) => {
 	const id = req.params.id;
 	try {
-		const recipe = await Recipe.updateOne({ _id: id }, { bookmarked: !req.bookmarked });
-		return res.json(recipe);
+		const recipe = await Recipe.findOne({ _id: id });
+		recipe.bookmarked = !recipe.bookmarked;
+		const updatedRecipe = await recipe.save();
+		return res.json(updatedRecipe);
 	} catch (err) {
 		console.log('There was an error: ', err);
 	}

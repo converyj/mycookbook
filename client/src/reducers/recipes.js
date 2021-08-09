@@ -9,11 +9,12 @@ import {
 } from './../actions/recipes';
 
 import { whichObj, buildArr, getPropertyName } from '../utilites/helper';
+import { formatRecipe } from './../utilites/helper';
 
 export default function recipes(state = {}, action) {
 	switch (action.type) {
 		case RECIEVE_ALL:
-			let allRecipes = Object.values(action.recipes).length;
+			let allRecipes = action.recipes.length;
 			let countPerPage = action.countPerPage || 10;
 
 			// total number of pages
@@ -87,8 +88,18 @@ export default function recipes(state = {}, action) {
 			return getRecipeState;
 
 		case TOGGLE_BOOKMARK:
+			const updatedRecipes = state.filteredRecipes.map((recipe) => {
+				if (recipe._id == action.id) {
+					return { ...recipe, bookmarked: !recipe.bookmarked };
+				}
+
+				return recipe;
+			});
 			return {
 				...state,
+				filteredRecipes: [
+					...updatedRecipes
+				],
 				recipe: {
 					...state.recipe,
 					bookmarked: !state.recipe.bookmarked
