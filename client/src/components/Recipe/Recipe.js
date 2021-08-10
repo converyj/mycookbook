@@ -8,6 +8,7 @@ import { trancateTitle } from '../../utilites/helper';
 const Recipe = ({ recipe, handleBookmark }) => {
 	// console.log(props.match.params);
 
+	let value;
 	const dispatch = useDispatch();
 	// useEffect(() => {
 	// 	dispatch(getRecipe(props.match.params.recipe_id));
@@ -50,10 +51,19 @@ const Recipe = ({ recipe, handleBookmark }) => {
 				<h2>Directions</h2>
 				<ol>
 					{recipe.filteredDirections.map((ing, index) => (
-						<li key={index}>
+						<li
+							value={
+								recipe.currentPage > 1 ? (
+									recipe.currentCount - recipe.countPerPage + index + 1
+								) : (
+									index + 1
+								)
+							}
+							key={index}>
 							<p>{ing}</p>
 						</li>
 					))}
+					)
 				</ol>
 			</div>
 			<Pagination from="directions" />
