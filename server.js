@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const recipeController = require('./controller/recipeController');
 const path = require('path');
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const Recipe = require('./models/recipe');
 
@@ -33,7 +32,7 @@ mongoose
 	.then((result) => app.listen(port, () => console.log(`Listening on port ${port}`)))
 	.catch((err) => console.log('DB Error', err));
 
-app.put('/recipe/:id', recipeController.get_recipe_by_id);
+app.put('/recipe/:id', recipeController.update_recipe_by_id);
 app.get('/search/:query', recipeController.get_recipe);
 
 app.get('/all', recipeController.all_recipes);
@@ -41,8 +40,9 @@ app.get('/all', recipeController.all_recipes);
 app.get('/123', (req, res) => {
 	res.send({ id: '123' });
 });
+
+// Handles any requests that don't match any other routes
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 console.log(__dirname);
-// Handles any requests that don't match any other routes

@@ -2,22 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { PreviewRecipeWrapper } from './PreviewRecipe';
 
-/* use only localStorage ? */
+/* use only DB ? */
 const BookmarkWrapper = () => {
+	// have to change the filteredRecipes in order for component to rerender
 	const recipes = useSelector((state) => state.recipes.filteredRecipes);
-	const recipe = useSelector((state) => state.recipes.recipe);
-	const bookmarkedRecipes = recipes && recipes.filter((recipe) => recipe.bookmarked === true);
-	console.log(recipes);
-	console.log(bookmarkedRecipes);
 
-	useEffect(
-		() => {
-			console.log('update');
-		},
-		[
-			recipe
-		]
-	);
+	// get all recipes that are bookmarked
+	const bookmarkedRecipes = recipes && recipes.filter((recipe) => recipe.bookmarked);
 
 	return (
 		<div className="bookmarks">
