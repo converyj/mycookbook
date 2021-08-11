@@ -2,27 +2,33 @@
 @import '../../scss/abstracts';
 
 .pagination-nav-buttons {
-	@extend %flex--row;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
 	justify-content: center;
+	justify-items: center;
 
-	.dot {
-		color: $clr-lightGrey;
+	.dots {
+		grid-column: 2;
 
-		+ .dot {
-			padding-left: 1em;
-		}
+		&__dot {
+			color: $clr-lightGrey;
 
-		&--active {
-			color: $clr-secondary;
+			&--active {
+				color: $clr-secondary;
+			}
 		}
 	}
-}
 
-.btn--right {
-	margin-left: auto;
-}
+	.btn--pagination {
+		justify-self: end;
+		color: $clr-primary;
+		background: $clr-lightGrey;
 
-.btn--left {
-	margin-right: auto;
+		&:hover,
+		&:focus {
+			color: $clr-lightGrey;
+			background: $clr-primary;
+		}
+	}
 }

@@ -61,17 +61,6 @@ h4 {
 		background: $clr-primaryLight;
 		transition: all ease-in-out 250ms;
 	}
-
-	&--pagination {
-		color: $clr-primary;
-		background: $clr-lightGrey;
-
-		&:hover,
-		&:focus {
-			color: $clr-lightGrey;
-			background: $clr-primary;
-		}
-	}
 }
 
 .bookmarks {
@@ -90,7 +79,9 @@ h4 {
 }
 
 .bookmarks:hover,
-.nav__btn--bookmarks:hover + .bookmarks {
+.bookmarks:focus,
+.nav__btn--bookmarks:hover + .bookmarks,
+.nav__btn--bookmarks:focus + .bookmarks {
 	visibility: visible;
 	opacity: 1;
 }

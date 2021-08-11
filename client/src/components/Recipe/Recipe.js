@@ -63,17 +63,17 @@ const Recipe = ({ recipe, handleBookmark }) => {
 							<p>{ing}</p>
 						</li>
 					))}
-					)
 				</ol>
 			</div>
 			<Pagination from="directions" />
 		</React.Fragment>
 	);
 };
+const MemoizedRecipeComponent = React.memo(Recipe);
 
 Recipe.propTypes = {
 	recipe: PropTypes.object.isRequired,
 	handleBookmark: PropTypes.func
 };
 
-export default Recipe;
+export default MemoizedRecipeComponent;
