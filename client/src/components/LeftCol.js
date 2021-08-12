@@ -1,7 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { useDispatch } from 'react-redux';
-import PreviewRecipe from './PreviewRecipe';
 import { PreviewRecipeWrapper } from './PreviewRecipe';
 
 import { Pagination } from './Pagination';

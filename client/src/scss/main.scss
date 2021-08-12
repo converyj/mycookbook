@@ -40,19 +40,24 @@ h4 {
 }
 
 .btn {
+	display: inline-block;
 	border-radius: $br-nm;
 	padding: .75em 1.25em;
+	text-align: center;
+	cursor: pointer;
 
 	&--primary {
 		background: $clr-primary;
+		color: $clr-lightGrey;
 	}
 
 	&--round {
 		border-radius: $br-round;
-		padding: .55em;
+		padding: 1em;
 		display: flex;
 		align-items: center;
 		background-color: $clr-primary;
+		border: 3px solid $clr-primaryLight;
 		color: $clr-lightGrey;
 	}
 

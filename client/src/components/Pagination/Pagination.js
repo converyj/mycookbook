@@ -42,13 +42,13 @@ const Pagination = ({ from }) => {
 	return (
 		<div className="pagination-nav-buttons">
 			{currentPage > 1 && (
-				<ButtonPrimary styles="btn--left" handleClick={previousPage}>
+				<ButtonPrimary styles="btn--pagination" handleClick={previousPage}>
 					&larr; Page {currentPage - 1}
 				</ButtonPrimary>
 			)}
 			<PaginationDots currentPage={currentPage} totalPages={totalPages} />
 			{currentPage < totalPages && (
-				<ButtonPrimary styles="btn--right" handleClick={nextPage}>
+				<ButtonPrimary styles="btn--pagination" handleClick={nextPage}>
 					Page {currentPage + 1} &rarr;
 				</ButtonPrimary>
 			)}

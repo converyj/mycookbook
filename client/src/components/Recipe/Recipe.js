@@ -69,11 +69,10 @@ const Recipe = ({ recipe, handleBookmark }) => {
 		</React.Fragment>
 	);
 };
-const MemoizedRecipeComponent = React.memo(Recipe);
 
 Recipe.propTypes = {
 	recipe: PropTypes.object.isRequired,
 	handleBookmark: PropTypes.func
 };
 
-export default MemoizedRecipeComponent;
+export default Recipe;

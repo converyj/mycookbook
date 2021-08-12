@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AddRecipeContainer } from '../AddRecipe';
 import BookmarkWrapper from '../BookmarkWrapper';
 import { SearchWrapper } from '../SearchBar';
 
@@ -19,6 +20,7 @@ const Header = () => {
 							<button className="nav__button nav__btn--add-recipe" title="add-recipe">
 								<span>Add Recipe</span>
 							</button>
+							<AddRecipeContainer />
 						</li>
 						<li className="nav__item">
 							<button

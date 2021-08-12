@@ -1,0 +1,64 @@
+@import '../../scss/abstracts/';
+@import '../../scss/utilities/';
+
+.add-recipe-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	background: $clr-lightGrey;
+	color: $clr-primary;
+	border-radius: $br-nm;
+	padding: 5rem 6rem;
+	box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
+	transition: all 0.5s;
+
+	.upload {
+		margin: 1em 0;
+		@extend %flex--column;
+
+		&__columns {
+			display: flex;
+			gap: 2em;
+		}
+
+		&__heading {
+			margin-bottom: 1em;
+		}
+		.form-group {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1em;
+			margin-bottom: 1em;
+		}
+
+		label {
+			width: max-content;
+			flex: 1;
+		}
+
+		input {
+			border-radius: $br-nm;
+			padding: 0.5em 1em;
+		}
+
+		.new-ingredient {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1em;
+			padding: 0;
+			padding-left: 1em;
+			border-radius: 2.1em;
+			color: $clr-lightGrey;
+			background: $clr-primaryLight;
+			width: max-content;
+
+			.btn--round {
+				background: inherit;
+			}
+		}
+	}
+}
