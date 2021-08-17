@@ -6,6 +6,8 @@ import { handleInitialData } from './actions/recipes';
 
 import './scss/main.scss';
 
+// import 'semantic-ui-css/semantic.css';
+
 const App = () => {
 	const dispatch = useDispatch();
 

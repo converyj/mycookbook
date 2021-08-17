@@ -32,7 +32,7 @@ const SearchWrapper = () => {
 	};
 
 	return (
-		<div className="search">
+		<div className="searchWrapper">
 			<SearchBar handleSubmit={handleSubmit} handleChange={handleChange} query={query} />
 		</div>
 	);

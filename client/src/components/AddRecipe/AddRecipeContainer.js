@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AddRecipeForm from './AddRecipeForm';
 import NewIngredient from './NewIngredient';
+import { handleCreateRecipe } from '../../actions/recipes';
 
 import './addRecipe.scss';
+import { useDispatch } from 'react-redux';
 
 class AddRecipeContainer extends Component {
 	state = {
 		title: '',
-		sourceUrl: '',
 		image: '',
+		directions: '',
+		linkedRecipes: [],
 		publisher: '',
 		cookingTime: 0,
-		servings: 0,
+		servings: Number(0),
 		ingredientsList: []
 	};
 
@@ -22,12 +26,18 @@ class AddRecipeContainer extends Component {
 		});
 	};
 
+	handleFileInput = (e) => {
+		fetch('api/read').then((res) => res.json()).then((data) => console.log(data));
+	};
+
 	handleInputIngredient = (e, i) => {
 		console.log(this.state.ingredientsList[i][e.target.name]);
 		let ingredients = [
 			...this.state.ingredientsList
 		];
-		this.state.ingredientsList[i][e.target.name] = e.target.value;
+		const value = e.target.name == 'quantity' ? parseInt(e.target.value) : e.target.value;
+
+		this.state.ingredientsList[i][e.target.name] = value;
 		this.setState({
 			ingredientsList: ingredients
 		});
@@ -47,22 +57,36 @@ class AddRecipeContainer extends Component {
 		});
 	};
 
+	handleArrayInput = (e, data) => {
+		console.log('linked', data);
+		this.setState({
+			linkedRecipes: [
+				...this.state.linkedRecipes,
+				...data.value
+			]
+		});
+	};
+
 	uploadRecipe = async (e) => {
 		// Upload recipe to API
 		e.preventDefault();
-		console.log(Object.entries(this.state.ingredientsList));
 		try {
 			// build object to be sent to API
-			// const recipe = {
-			// 	title: newRecipe.title,
-			// 	publisher: newRecipe.publisher,
-			// 	source_url: newRecipe.sourceUrl,
-			// 	image_url: newRecipe.image,
-			// 	servings: newRecipe.servings,
-			// 	cooking_time: newRecipe.cookingTime,
-			// 	ingredients
-			// };
-			// const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
+			const directions = this.state.directions.split(',').map((el) => el.trim());
+
+			const recipe = {
+				title: this.state.title,
+				image: this.state.image,
+				publisher: this.state.publisher,
+				servings: parseInt(this.state.servings),
+				cookingTime: parseInt(this.state.cookingTime),
+				ingredients: this.state.ingredientsList,
+				linkedRecipes: this.state.linkedRecipes,
+				directions
+			};
+
+			console.log(recipe);
+			handleCreateRecipe(recipe);
 			// return formatRecipe(data.data.recipe);
 		} catch (err) {
 			throw err;
@@ -76,7 +100,9 @@ class AddRecipeContainer extends Component {
 					handleNewIngredient={this.handleNewIngredient}
 					ingredientsList={this.state.ingredientsList}
 					handleInput={this.handleInput}
+					handleFileInput={this.handleFileInput}
 					handleInputIngredient={this.handleInputIngredient}
+					handleArrayInput={this.handleArrayInput}
 					formState={this.state}
 					uploadRecipe={this.uploadRecipe}
 				/>
@@ -87,4 +113,4 @@ class AddRecipeContainer extends Component {
 
 AddRecipeContainer.propTypes = {};
 
-export default AddRecipeContainer;
+export default connect(null, { handleCreateRecipe })(AddRecipeContainer);

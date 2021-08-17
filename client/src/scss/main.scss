@@ -39,6 +39,17 @@ h4 {
 	color: $clr-secondary;
 }
 
+input,
+select,
+textarea {
+	border-radius: $br-nm;
+	padding: 0.5em 1em;
+}
+
+input[type=number] {
+	width: 5em;
+}
+
 .btn {
 	display: inline-block;
 	border-radius: $br-nm;
@@ -59,6 +70,10 @@ h4 {
 		background-color: $clr-primary;
 		border: 3px solid $clr-primaryLight;
 		color: $clr-lightGrey;
+	}
+
+	&--small {
+		transform: scale(67%);
 	}
 
 	&:hover,

@@ -28,6 +28,7 @@ const config = {
 				use: 'babel-loader',
 				exclude: /node_modules/
 			},
+			// Internal CSS
 			{
 				test: /\.(scss|sass|css)$/,
 				exclude: /node_modules/,
@@ -44,7 +45,16 @@ const config = {
 					'sass-loader'
 				]
 			},
-
+			// External CSS - deal with third-party libraries eg. Semantic UI CSS
+			{
+				test: /\.css$/,
+				include: /node_modules/,
+				use: [
+					{
+						loader: 'css-loader'
+					}
+				]
+			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
 				exclude: /node_modules/,

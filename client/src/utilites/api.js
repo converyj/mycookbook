@@ -29,3 +29,15 @@ export async function updateRecipeBookmark(id) {
 		console.log('There was an error: ', err);
 	}
 }
+
+export async function createNewRecipe(recipe) {
+	console.log('api');
+	try {
+		const res = await axios.post('api/new', {
+			recipe
+		});
+		return res.data;
+	} catch (err) {
+		console.log(err);
+	}
+}

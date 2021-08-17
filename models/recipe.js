@@ -20,12 +20,15 @@ const recipeSchema = new Schema({
 		type: String,
 		required: true
 	},
-	author: {
+	image: {
+		type: String
+	},
+	publisher: {
 		type: String
 	},
 	category: {
 		type: [
-			{ id: Number }
+			String
 		],
 		required: true
 	},
@@ -36,16 +39,27 @@ const recipeSchema = new Schema({
 		required: true
 	},
 	directions: {
-		type: [],
+		type: [
+			String
+		],
 		required: true
 	},
 	linkedRecipes: {
 		type: [
-			{ id: Number }
+			String
 		]
 	},
+	servings: {
+		type: Number,
+		required: true
+	},
+	cookingTime: {
+		type: Number,
+		required: true
+	},
 	bookmarked: {
-		type: Boolean
+		type: Boolean,
+		default: false
 	}
 });
 

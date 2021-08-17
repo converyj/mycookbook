@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 /* Renders the preview box of the recipe */
 const PreviewRecipe = ({ recipe, handleRecipe }) => {
 	return (
-		<li key={recipe._id} className="preview__item preview__item--active" onClick={handleRecipe}>
+		<li
+			key={recipe._id}
+			className="preview__item preview__item--active"
+			onClick={handleRecipe && handleRecipe}>
 			<figure className="preview__item__image">
 				<img src="" alt={recipe.title} />
 			</figure>

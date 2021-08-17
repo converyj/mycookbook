@@ -1,4 +1,9 @@
-import { getAllRecipes, getAllRecipesBasedOnQuery, updateRecipeBookmark } from '../utilites/api';
+import {
+	getAllRecipes,
+	getAllRecipesBasedOnQuery,
+	updateRecipeBookmark,
+	createNewRecipe
+} from '../utilites/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const RECIEVE_ALL = 'RECIEVE_ALL';
@@ -65,5 +70,12 @@ export function getAllBasedOnQuery(query) {
 export function handleToggleBookmark(id) {
 	return (dispatch) => {
 		return updateRecipeBookmark(id).then(() => dispatch(toggleBookmark(id)));
+	};
+}
+
+export function handleCreateRecipe(recipe) {
+	console.log('handlecreatere ipe');
+	return (dispatch) => {
+		return createNewRecipe(recipe).then((data) => console.log(data));
 	};
 }

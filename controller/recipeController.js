@@ -40,8 +40,13 @@ const update_recipe_by_id = async (req, res) => {
 	}
 };
 
+const create_recipe = (req, res) => {
+	console.log(req.recipe);
+};
+
 module.exports = {
 	all_recipes,
 	get_recipe,
-	update_recipe_by_id
+	update_recipe_by_id,
+	create_recipe
 };

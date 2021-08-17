@@ -3,8 +3,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const recipeController = require('./controller/recipeController');
 const path = require('path');
-
+const fs = require('fs');
+const bodyParser = require('body-parser');
 const Recipe = require('./models/recipe');
+const { json } = require('express');
+const fetch = require('node-fetch');
 
 require('dotenv').config();
 
@@ -13,7 +16,7 @@ const { NODE_APP_MONGODB_USER_ID, NODE_APP_MONGODB_PASSWORD } = process.env;
 const app = express();
 app.use(cors());
 app.use(express.static('client/public'));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 // app.use('/api', createProxyMiddleware({ target: 'http://127.0.0.1:5000', changeOrigin: true }));
 
 const port = process.env.PORT || 5000;
@@ -40,6 +43,8 @@ app.get('/all', recipeController.all_recipes);
 app.get('/123', (req, res) => {
 	res.send({ id: '123' });
 });
+
+app.post('/new', recipeController.create_recipe);
 
 // Handles any requests that don't match any other routes
 app.get('*', (req, res) => {

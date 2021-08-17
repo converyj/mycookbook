@@ -5,60 +5,95 @@
 	position: fixed;
 	top: 50%;
 	left: 50%;
+	height: 93%;
+	min-width: 80rem;
+	overflow-y: scroll;
 	transform: translate(-50%, -50%);
 	z-index: 1000;
 	background: $clr-lightGrey;
 	color: $clr-primary;
 	border-radius: $br-nm;
-	padding: 5rem 6rem;
+	padding: 1rem 6rem;
 	box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
 	transition: all 0.5s;
+	// .form-group {
+	// 	display: flex;
+	// 	justify-content: space-between;
+	// 	align-items: center;
+	// 	gap: 1em;
+	// 	margin-bottom: 1em;
+
+	// 	label {
+	// 		width: max-content;
+	// 		flex: 1;
+	// 	}
+	// }
 
 	.upload {
 		margin: 1em 0;
-		@extend %flex--column;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(20em, 1fr));
+		gap: 4rem 6rem;
+		// @extend %flex--column;
 
-		&__columns {
-			display: flex;
-			gap: 2em;
+		&__column {
+			display: grid;
+			grid-template-columns: 1fr 2.8fr;
+			align-items: center;
+			align-content: start;
+			gap: 1.5rem;
 		}
 
 		&__heading {
 			margin-bottom: 1em;
 		}
-		.form-group {
+
+		&__title {
+			grid-column: span 2;
+		}
+
+		.directions {
+			display: grid;
+			grid-column: 1/-1;
+		}
+
+		.ingredients-header {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 1em;
-			margin-bottom: 1em;
-		}
-
-		label {
 			width: max-content;
-			flex: 1;
-		}
-
-		input {
-			border-radius: $br-nm;
-			padding: 0.5em 1em;
-		}
-
-		.new-ingredient {
-			display: flex;
-			justify-content: space-between;
 			align-items: center;
-			gap: 1em;
-			padding: 0;
-			padding-left: 1em;
-			border-radius: 2.1em;
-			color: $clr-lightGrey;
-			background: $clr-primaryLight;
-			width: max-content;
+			justify-content: space-between;
+			grid-column: span 2;
+		}
 
-			.btn--round {
-				background: inherit;
-			}
+		.btn--round {
+			background: inherit;
+		}
+
+		.btn--upload {
+			grid-column: 1/-1;
 		}
 	}
+
+	.new-ingredient {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1em;
+		padding: 0;
+		padding-left: 1em;
+		border-radius: 2.1em;
+		color: $clr-lightGrey;
+		background: $clr-primaryLight;
+		width: max-content;
+	}
 }
+
+// .add-recipe-modal:active,
+// .add-recipe-modal:focus,
+// .add-recipe-modal:focus-within,
+// .add-recipe-modal:focus-visible,
+// .nav__btn--add-recipe:active + .add-recipe-modal,
+// .nav__btn--add-recipe:focus + .add-recipe-modal {
+// 	visibility: visible;
+// 	opacity: 1;
+// }
